@@ -1,0 +1,291 @@
+
+
+h4 {
+	color: black;
+}
+
+h2 {
+	color: black;
+	font-size: 30px;
+	display: inline;
+}
+
+h1 {
+	color: black;
+	font-size: 40px;
+}
+
+hr {
+	border-color:black;
+}
+
+.inner {
+	white-space:nowrap;
+/*	display: inline-block;*/
+}
+.lower {
+    position: absolute;
+    bottom: 0;
+    left: 5;
+}
+
+.price {
+	color: darkred;
+}
+
+.right {
+	float:right;
+	display:inline;
+}
+.left {
+	float:left;
+	display:inline;
+}
+
+.a, .a:hover, a:active, a:visited, a:link {
+	text-decoration: none;
+	color:black;
+}
+
+
+.btn-default, .btn-default:hover {
+	background-color: rgb(254,177,96);
+	border-radius:0;
+	border-color: black;
+	box-shadow: 3px 3px 0 0 black;
+	color:black;
+}
+
+
+.btn-drop {
+	background-color: rgb(255,255,255);
+	border-radius:0;
+	border-color: black;
+	width:290px;
+	height: 36px;
+	color:black;
+}
+
+.form-control, .form-control:hover, .form-control:active {
+	background-color: rgb(255,255,255);
+	border-radius:0;
+	border-color: black;
+	color:black;
+
+}
+
+.dropdown-menu {
+	background-color: rgb(255,255,255);
+	border-radius:0;
+	border-color: black;
+	width:290px;
+}
+
+.form-control {
+	border-color: black;
+	border-radius:0;
+	color: black;
+}
+
+.verticalLine {
+    border-left: solid black;
+    border-width: 1px;
+}
+
+html, body, .container-fluid {
+	height: 100%;
+}
+
+
+#dinnerPrice {
+	position : relative;
+	min-height : 240px;
+}
+
+.current {
+	border-color: darkgrey;
+	border-style:solid;
+	border-width:2px;
+	padding:3px;
+	margin:1px;
+}
+
+.noncurrent {
+	border-color: white;
+	border-style:solid;
+	border-width:2px;
+	padding:3px;
+	margin:1px;
+}
+
+#menu {
+	text-align:center;
+}
+
+#dishList {
+	margin:40px;
+	padding:8px;
+	color:black;
+}
+
+.dish {
+	vertical-align: top;
+    display: inline-block;
+    height: 350px;
+}
+
+.dish img, #dishList img {
+	height: 200px;
+	width: 200px;
+	border:solid;
+	border-width: 4px;
+	border-color:black;
+}
+
+#leftHalf img {
+	height: 250px;
+	width: 500px;
+}
+
+.dish .title {
+	color:black;
+	display:block;
+	background-color: rgb(222,222,222);
+	border: solid;
+	border-top:none;
+	padding:3px;
+	width:200px;
+	text-align: center;
+}
+
+.dish .dinnertitle {
+	color:black;
+	display:block;
+	background-color: rgb(222,222,222);
+	border: solid;
+	border-top:none;
+	padding:3px;
+	width:200px;
+}
+
+.dish .description {
+	color:black;
+	text-align:left;
+	display:block;
+	width:200px;
+}
+
+
+
+#mini {
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	border-left: none;
+	border-right:none;
+	background-color: rgb(222,222,222);
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+	padding-top:10px;
+}
+
+#header {
+	
+	background-color: rgb(239,239,239);
+	height: 100px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 20px;
+}
+
+#headerHomePage {
+	
+	background-color: rgba(255,233,148, 0.8);
+	color: black;
+	height: 100px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 20px;
+}
+
+#rightHalf {
+	background-color: rgb(255,233,148);
+	border-style:solid;
+	border-width:4px;
+	border-top:none;
+}
+
+#lowerHalf {
+	background-color: rgb(255,255,255);
+	border-top:none;
+}
+
+
+#info {
+	background-color: rgba(255,255,255, 0.8);
+	color: black;
+	height:400px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top:15px;
+}
+
+
+#homePage {					
+	min-height: 100%;
+	height: 100%;
+
+	background-image: url('images/backgroundPicture.jpg');
+	background-repeat: no-repeat;
+	background-size:cover;
+	display: block;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 20px;
+}
+
+
+#sideWindowView {
+	background-color: rgb(255,255,255);
+
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+
+	min-height: 100%;	
+	height: 100%;
+}
+
+
+#searchBar {
+	background-color: rgb(255,233,148);
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	height: 150px;
+}
+
+#dinnerBar {
+	background-color: rgb(255,233,148);
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	height: 100px;
+	padding-left: 2cm;
+	padding-right: 2cm;
+	padding-top: 0.9cm;
+}
+
+#mainWindow {
+	background-color: rgb(255,255,255);
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+
+	min-height: 100%;
+	height: 100%;
+}
