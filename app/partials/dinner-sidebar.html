@@ -3,23 +3,86 @@
 <h4>My dinner</h4>
 <div class="row">
 	<div class="col-md-12">
-		<!--People: {{getNumberOfGuests()}}<br>-->
 		People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)"/><br>
 		<br>
 		
 		<div class="row">
 			<div class="col-md-12" id="mini">
-				<b><span class='left'>Dish Name</span> <span class='right'>Cost</span></b>
+				<b><span class='left'>Dish Name</span>
+				<span class='right'>Cost</span></b>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-12" id="menu">
+				
+				<div ng-repeat="course in menu()">
+					<span ng-if="isCurrent(course) == true">
+						<div class='row current'>
+							<a ng-click="setSelectedDish(course)" ng-href="#/dish/{{course.RecipeID}}">
+		  
+							<span class='left'>
+								{{getNumberOfGuests()}}
+							</span>
+							 {{course.Title}}
+							<span class='right price'>
+								{{getDishGuestPrice(course)}}
+							</span>
+							</a>
+							<span class='right glyphicon glyphicon-trash' ng-click="removeDish(course)"  ng-href="#"></span>
+						</div>
+					</span>
+
+					<span ng-if="isCurrent(course) == false">
+						<div class='row noncurrent'>
+							<a ng-click="setSelectedDish(course)" ng-href="#/dish/{{course.RecipeID}}">
+		  
+							<span class='left'>
+								{{getNumberOfGuests()}}
+							</span>
+							 {{course.Title}}
+							<span class='right price'>
+								{{getDishGuestPrice(course)}}
+							</span>
+							</a>
+							<span class='right glyphicon glyphicon-trash' ng-click="removeDish(course)"  ng-href="#"></span>
+						</div>
+					</span>
+				</div>
+
+				<span ng-if="isPendingInMenu() == true">
+					<div class='row noncurrent'>
+						Pending
+						<span class='right price'>
+							{{pendingPrice()}}
+						</span>
+					</div>
+				</span>
+
+				<span ng-if="isPendingInMenu() == false">
+					<div class='row current'>
+						Pending
+						<span class='right price'>
+							{{pendingPrice()}}
+						</span>
+					</div>
+				</span>
+
+				<span ng-if="isPendingInMenu() == 'none'">
+					<div class='row noncurrent'>
+						Pending
+						<span class='right price'>
+							{{pendingPrice()}}
+						</span>
+					</div>
+				</span>
+			
+				<hr><span class='right price'>
+					SEK {{dinnerPrice()}}
+				</span><br><br>
+				<a href="#/overview" ng-click="setSelectedDish(undefined)" class="btn btn-default btn-block">Confirm dinner</a><br>
 			</div>
-		Total price: {{getNumberOfGuests()}}
-		<a href="#/search" class="btn btn-default btn-block">Confirm dinner-länk inte klar ännu!</a><br>
 		</div>
 	</div>
 </div>
 </div>
-

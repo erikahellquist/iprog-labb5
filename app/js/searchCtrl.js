@@ -11,11 +11,25 @@ dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner) {
    $scope.status = "Searching...";
    Dinner.DishSearch.get({title_kw:query},function(data){
      $scope.dishes=data.Results;
+     console.log("result: ", data);
      $scope.status = "Showing " + data.Results.length + " results";
    },function(data){
      $scope.status = "There was an error";
    });
  }
+
+  $scope.setSelectedDish = function(dish) {
+    //console.log("di:", dish);
+    if (dish != undefined) {
+      var newdish = Dinner.Dish.get({id:dish.RecipeID});
+      Dinner.setSelectedDish(newdish);
+    }
+    else {
+      Dinner.setSelectedDish(dish)
+    }
+    
+    //console.log(Dinner.getSelectedDish());
+  }
 
 
 

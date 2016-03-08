@@ -1,0 +1,46 @@
+<!-- Header -->
+<div class="row">
+	<div class="col-md-12" id="headerHomePage">
+		<font size="10"><b>HOMELETTE</b></font> <i>From the best chefs in the world directly into your kitchen</i>
+	</div>
+</div>
+
+<div class="row" id="dinnerView">
+	<div class="row">	
+		<div class="col-md-12" id="dinnerBar">
+			<h2>My dinner: {{getNumberOfGuests()}} people</h2>
+			<span class='right'>
+			<a href="#/search" class="btn btn-default">Go back and edit dinner</a>
+			</span>
+		</div>
+
+		<div class="col-md-12" id="dinnerListing">
+			<br><br>
+
+			<div ng-repeat="dish in menu()">
+	
+				<div class='col-md-3 dish'>
+					<center>
+					<img ng-src="{{dish.ImageURL}}"/>
+					<br><span class='dinnertitle'>
+						{{dish.Title}}
+					</span>
+					<span class='price'>
+						{{getDishGuestPrice(dish)}} SEK
+					</span>
+					<br></center>
+				</div>
+			</div>
+
+			<div class='col-md-3 verticalLine' id='dinnerPrice'>
+				<span class='lower'>
+					<b>Total:</b><br><span class='price'>{{getConfirmedMenuPrice()}} SEK
+				</span></span>
+			</div>
+
+			<div class='col-md-12'><hr>
+				<center><a href="#/preparation" class="btn btn-default" style='width:300px;'>Print full recipe</a></center>
+			</div>
+		</div>
+	</div>
+</div>

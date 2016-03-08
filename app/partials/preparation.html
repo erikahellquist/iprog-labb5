@@ -1,0 +1,34 @@
+<!-- Header -->
+<div class="row">
+	<div class="col-md-12" id="headerHomePage">
+		<font size="10"><b>HOMELETTE</b></font> <i>From the best chefs in the world directly into your kitchen</i>
+	</div>
+</div>
+
+<div class="row" id="dinnerPrepView">
+	<div class="row">	
+		<div class="col-md-12" id="dinnerBar">
+			<h2>My dinner: {{getNumberOfGuests()}} people</h2>
+			<span class='right'><a href="#/overview" class="btn btn-default">Go back and edit dinner</a></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" id="prepView">
+			<div ng-repeat="dish in menu()">
+				<div class='row' id='dishList'>
+				<div class='col-md-2'>
+					<img ng-src="{{dish.ImageURL}}"/>
+				</div>
+				<div class='col-md-5'>
+					<h3>{{dish.Title}}</h3>
+					{{dish.Description}}
+				</div>
+				<div class='col-md-5'>
+					<h3>PREPARATION</h3>
+					{{dish.Instructions}}
+				</div>
+				<br><br><br>
+			</div></div>
+		</div>
+	</div>
+</div>

@@ -3,7 +3,7 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
-dinnerPlannerApp.factory('Dinner',function ($resource) {
+dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
 
 
   // TODO in Lab 5: Add your model code from previous labs
@@ -17,13 +17,18 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   //var APIKEY = "r02x0R09O76JMCMc4nuM0PJXawUHpBUL"
   //var APIKEY = "H9n1zb6es492fj87OxDtZM9s5sb29rW3"
   //var APIKEY = "1hg3g4Dkwr6pSt22n00EfS01rz568IR6"
-  //var APIKEY = "8vtk7KykflO5IzB96kb0mpot0sU40096"
-  var APIKEY = "3stL5NVP4s6ZkmK5gt4dci8a4zOQRpD4"
+  var APIKEY = "8vtk7KykflO5IzB96kb0mpot0sU40096"
+  //var APIKEY = "3stL5NVP4s6ZkmK5gt4dci8a4zOQRpD4"
 
+   //$cookieStore.put('guests',variable);
+    //$cookieStore.get('myFavorite');
   
-  var numberOfGuests = 2;
+  var numberOfGuests = $cookieStore.get('guests');
+  if (numberOfGuests == undefined) {
+    numberOfGuests = 1;
+  }
   var selectedDish = undefined;
-  var menu = [];
+  var menu = []
   var pendingPrice = 0;
 
   var searchText = undefined;
@@ -65,12 +70,9 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   this.setNumberOfGuests = function(num) {
     if (num >= 0) {
       numberOfGuests = num;
+      $cookieStore.put('guests', numberOfGuests);
     }
   }
-
-  /*this.setNumberOfGuests = function(num) {      // from lab 5 original code
-    numberOfGuest = num;
-  }*/
 
 
   this.getNumberOfGuests = function() {
@@ -115,7 +117,35 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     return this.getDishGuestPrice(selectedDish);
   }
 
+  /*this.fromMenuToId = function() {
+    var idList = []
+    for (key in menu) {
+      idList.push(menu[key].RecipeID);
+    }
+    console.log("fromMenuToId idList", idList)
+    $cookieStore.put('menu', idList);
+  }*/
+
   //Returns all the dishes on the menu.
+  /*this.getFullMenu = function() {
+
+    var fromCookie = $cookieStore.get('menu');
+    console.log("fromCookie", fromCookie);
+    var fullMenu = [];
+
+    for (key in fromCookie) {
+      console.log("på plats: ", key ," i: ", fromCookie[key]);
+      //var object = this.Dish.get({id:fromCookie[key]});
+      console.log("object: ", object);
+      fullMenu.push(object);
+    }
+    console.log("full menu", fullMenu);
+
+    menu = fullMenu;
+
+    return menu;
+  }*/
+
   this.getFullMenu = function() {
     return menu;
   }
@@ -131,7 +161,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
       price += this.getDishGuestPrice(selectedDish);
     }
     
-    return price;
+    return Math.round(price);
   }
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -140,7 +170,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     for (i in menu) {
       price = price + this.getDishGuestPrice(menu[i]);
     }
-    return price;
+    return Math.round(price);
   }
 
   
@@ -150,9 +180,8 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     
     if (this.idInMenu(object) == false) {
       menu.push(object);
+      //this.fromMenuToId();
     }
-    //console.log("add menu", menu);
-  
   }
 
   //Removes dish from menu
@@ -160,6 +189,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     for (index in menu) {
       if (object.RecipeID == menu[index].RecipeID) {
         menu.splice(index, 1);
+       // this.fromMenuToId();
       }
     }
   }
@@ -184,12 +214,10 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
       var price = this.getDishPrice(object);
       price = price * numberOfGuests;
       //console.log("guestdishprice: ", price);
-      return price;
+      return Math.round(price);
     }
     return 0;
   }
-
-
 
 
 

@@ -4,12 +4,60 @@
 		<font size="10"><b>HOMELETTE</b></font> <i>From the best chefs in the world directly into your kitchen</i>
 	</div>
 </div>
-
-
+<span ng-if="getSelectedDish() == undefined">
+	{{setSel()}}
+</span>
 <!-- We include the sidebar as it is shared across two screens. -->
 <ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
 
 <!-- TODO in Lab 5: Display the dish information including image, Description, 
 Instructions, Ingredients and total cost. -->
+
+<div class="col-md-10" id="recipeView">
+	<div class="row">	
+		<div class="col-md-12">
+			<div class = "col-md-6" id="leftHalf">
+			<span id = "inner">
+				<h1>{{dish.Title}}</h1>
+				<img ng-src="{{dish.ImageURL}}"/><br>
+				{{dish.Description}}
+				<br><br>
+			</span>
+			
+			<a href="#/search" ng-click="setSelectedDish(undefined)" class="btn btn-default">Go back to Select Dish</a><br><br>
+			</div>
+
+			<div class= "col-md-6" id="rightHalf">
+			<span class = "inner" id = "rightInnerUpper"> </span>
+			<span class = "inner" id = "rightInnerLower"> </span>
+
+
+			<h3> INGREDIENTS FOR {{getNumberOfGuests()}} PEOPLE</h3>
+				<div ng-repeat="ingredient in dish.Ingredients">
+					{{ingredientPriceOrAmount(ingredient)}} {{ingredient.MetricUnit}} {{ingredient.Name}}
+					<span class="right">SEK {{ingredientPriceOrAmount(ingredient)}}</span>
+				</div>
+
+				<br>
+
+				<hr>
+				<button class="btn btn-default" ng-click="addDish(dish)" ng-href="#">Confirm dish</button>
+				<span class='right'>SEK: {{dishPrice(dish)}}</span><br>
+
+			<br>
+			</div>
+		</div>
+	</div>
+	
+	<div class = "row">
+		<div class = "col-md-12" id = "lowerHalf">
+
+			<h2> Preparation </h2><br>
+			{{dish.Instructions}}
+		</div>
+	</div>
+</div>
+
+
 
 
