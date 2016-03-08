@@ -28,7 +28,12 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     numberOfGuests = 1;
   }
   var selectedDish = undefined;
+
   var menu = []
+
+  var cookieList = $cookieStore.get('menu');
+  
+
   var pendingPrice = 0;
 
   var searchText = undefined;
@@ -39,6 +44,31 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:APIKEY}); 
 
 
+  this.cookieToMenu = function(list) {
+
+    if (list != undefined) {
+      for (i = 0; i < list.length; i++) {
+        dishGet = $resource('http://api.bigoven.com/recipe/:id',{api_key:APIKEY});
+        dishGet.get({id:list[i]}, function(data){
+          menu.push(data);
+        }, function(data){
+          console.log("error")
+        });
+      }
+    }
+    console.log("menyn ser ut: ", menu);
+  }
+  this.cookieToMenu(cookieList);
+
+
+  this.fromMenuToCookie = function() {
+    idList = []
+    for (j = 0; j < menu.length; j++) {
+      idList.push(menu[j].RecipeID);
+    }
+    console.log("fromMenuToId idList", idList)
+    $cookieStore.put('menu', idList);
+  }
 
   this.setSearchText = function(text) {
     searchText = text;
@@ -117,15 +147,6 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     return this.getDishGuestPrice(selectedDish);
   }
 
-  /*this.fromMenuToId = function() {
-    var idList = []
-    for (key in menu) {
-      idList.push(menu[key].RecipeID);
-    }
-    console.log("fromMenuToId idList", idList)
-    $cookieStore.put('menu', idList);
-  }*/
-
   //Returns all the dishes on the menu.
   /*this.getFullMenu = function() {
 
@@ -181,6 +202,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     if (this.idInMenu(object) == false) {
       menu.push(object);
       //this.fromMenuToId();
+      this.fromMenuToCookie();
     }
   }
 
@@ -190,6 +212,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
       if (object.RecipeID == menu[index].RecipeID) {
         menu.splice(index, 1);
        // this.fromMenuToId();
+       this.fromMenuToCookie();
       }
     }
   }

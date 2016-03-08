@@ -53,17 +53,17 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope,Dinner) {
 
     if (Dinner.selectedDishInMenu() == false) {     // If it's not in the menu
       if (Dinner.getSelectedDish() == undefined) {  // If it is undefined
-        console.log("return none1");
+        //console.log("return none1");
         return "none";
 
       }
       else {
-        console.log("return false2");                // not in menu but not undefined
+        //console.log("return false2");                // not in menu but not undefined
         return false;
       }
     }
     else {      // If it is in the menu
-      console.log("return true3");
+      //console.log("return true3");
       return true;
     }
   }
